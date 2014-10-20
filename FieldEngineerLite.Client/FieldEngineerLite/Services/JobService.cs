@@ -15,19 +15,13 @@ namespace FieldEngineerLite
     public class JobService
     {
         // TODO - add Mobile Service client and Jobs table
-        private MobileServiceClient MobileService = new MobileServiceClient (
-                                                        "https://contosocast.azure-mobile.net/");
+
 
 
         public async Task InitializeAsync()
         {
             // TODO - remove dummy data and open local database
-            var store = new MobileServiceSQLiteStore ("contosocast.db");
-            store.DefineTable<Job> ();
 
-            await MobileService.SyncContext.InitializeAsync (store);
-
-            jobTable = MobileService.GetSyncTable<Job> ();
 
         }
 
@@ -35,24 +29,14 @@ namespace FieldEngineerLite
         {
             // TODO - add synchronization code
 
-            await this.MobileService.SyncContext.PushAsync ();
-
-            var query = jobTable.CreateQuery ()
-                                        .Where (job => job.AgentId == "37e865e8-38f1-4e6b-a8ee-b404a188676e");
-
-            await jobTable.PullAsync ("myjobs", query);
 
         }            
 
-        public async Task CompleteJobAsync(Job job)
+        public async Task UpdateJobAsync(Job job)
         {
             // TODO - complete the job and update locally
 
-            job.Status = Job.CompleteStatus;
-            await jobTable.UpdateAsync (job);
 
-            if(Online)
-                await this.SyncAsync();
         }
 
 
@@ -79,6 +63,14 @@ namespace FieldEngineerLite
         {
             jobs = new List<Job> ();
             await Task.FromResult(0);
+        }
+
+        public async Task CompleteJobAsync(Job job)
+        {
+            await UpdateJobAsync(job);
+
+            if(Online)
+                await this.SyncAsync();
         }
 
         public async Task<IEnumerable<Job>> SearchJobs(string searchInput)

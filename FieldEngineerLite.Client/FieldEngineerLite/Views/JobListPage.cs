@@ -119,9 +119,10 @@ namespace FieldEngineerLite.Views
                 if(App.JobService.Online)
                 {
                     await App.JobService.SyncAsync();
+                    await Task.Delay(3000);
                     await RefreshAsync();
                 }
-                await Task.Delay(5000);
+                await Task.Delay(3000);
             }
         }
 
