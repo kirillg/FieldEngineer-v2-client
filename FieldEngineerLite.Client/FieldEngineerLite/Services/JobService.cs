@@ -8,7 +8,6 @@ using Microsoft.WindowsAzure.MobileServices.Sync;
 using FieldEngineerLite.Helpers;
 using FieldEngineerLite.Models;
 using System.Threading;
-using MonoTouch.CoreText;
 using System.Runtime.InteropServices;
 
 namespace FieldEngineerLite
