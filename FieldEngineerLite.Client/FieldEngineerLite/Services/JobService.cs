@@ -8,16 +8,23 @@ using Microsoft.WindowsAzure.MobileServices.Sync;
 using FieldEngineerLite.Helpers;
 using FieldEngineerLite.Models;
 using System.Threading;
+using MonoTouch.CoreText;
+using System.Runtime.InteropServices;
 
 namespace FieldEngineerLite
 {
     public class JobService
     {
+//        private MobileServiceClient MobileService = new MobileServiceClient (
+//                                                        "https://felight.azure-mobile.net/", "",
+//                                                        new LoggingHandler ()
+//                                                    );
         private List<Job> jobs;
+        //private IMobileServiceSyncTable<Job> jobTable;
 
         public async Task InitializeAsync()
         {
-            jobs = GetDummyData ();
+            jobs = GetDummyData();
             await Task.FromResult (0);
         }
 
@@ -41,11 +48,12 @@ namespace FieldEngineerLite
         public async Task ClearAllJobs()
         {
             jobs = new List<Job> ();
+            await Task.FromResult(0);
         }
 
         private async Task<bool> IsAuthenticated()
         {
-            return true;               
+            return await Task.FromResult(true);
         }   
 
         private List<Job> GetDummyData()
