@@ -16,12 +16,12 @@ namespace FieldEngineerLite
     public class JobService
     {
         // TODO - add Mobile Service client and Jobs table
+     
 
         public async Task InitializeAsync()
         {
             // TODO - remove dummy data and open local database
-            jobs = GetDummyData();
-            await Task.FromResult (0);
+            await Task.FromResult(0);
         }
 
         public async Task SyncAsync()
@@ -56,6 +56,8 @@ namespace FieldEngineerLite
 
         #region Other Client Code
 
+        private IMobileServiceSyncTable<Job> jobTable;
+
         public async Task ClearAllJobs()
         {
             jobs = new List<Job> ();
@@ -64,8 +66,18 @@ namespace FieldEngineerLite
 
         public async Task<IEnumerable<Job>> SearchJobs(string searchInput)
         {
-            IEnumerable<Job> items = this.jobs;           
-            return await Task.FromResult(items);
+            var query = jobTable.CreateQuery ();
+
+            if (!string.IsNullOrWhiteSpace (searchInput)) {
+                query = query.Where (job => 
+                                job.JobNumber == searchInput
+                                // workaround bug: these are backwards
+                || searchInput.ToUpper ().Contains (job.Title.ToUpper ())
+                || searchInput.ToUpper ().Contains (job.Status.ToUpper ())
+                );
+            }
+
+            return await query.ToEnumerableAsync ();
         }
 
         private async Task<bool> IsAuthenticated()
