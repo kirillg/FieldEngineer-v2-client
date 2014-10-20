@@ -1,10 +1,21 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|Mixed Platforms" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone4s.7.0" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone Simulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone4s.7.0" />
   <MonoDevelop.Ide.Workbench ActiveDocument="FieldEngineerLite.Client/FieldEngineerLite/Services/JobService.cs">
     <Files>
-      <File FileName="FieldEngineerLite.Client/FieldEngineerLite/Services/JobService.cs" Line="1" Column="1" />
+      <File FileName="FieldEngineerLite.Client/FieldEngineerLite/Services/JobService.cs" Line="28" Column="28" />
       <File FileName="FieldEngineerLite.Client/FieldEngineerLite.iOS/AppDelegate.cs" Line="22" Column="22" />
+      <File FileName="FieldEngineerLite.Client/FieldEngineerLite.iOS/Main.cs" Line="1" Column="1" />
+      <File FileName="FieldEngineerLite.Client/FieldEngineerLite/Views/JobListPage.cs" Line="42" Column="42" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="FieldEngineerLite.iOS" expanded="True" selected="True">
+            <Node name="References" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>

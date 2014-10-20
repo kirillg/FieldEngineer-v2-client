@@ -16,7 +16,7 @@ namespace FieldEngineerLite
     public class JobService
     {
 //        private MobileServiceClient MobileService = new MobileServiceClient (
-//                                                        "https://felight.azure-mobile.net/", "",
+//                                                        "https://contosocast.azure-mobile.net/", "",
 //                                                        new LoggingHandler ()
 //                                                    );
         private List<Job> jobs;
