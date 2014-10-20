@@ -15,40 +15,57 @@ namespace FieldEngineerLite
 {
     public class JobService
     {
-//        private MobileServiceClient MobileService = new MobileServiceClient (
-//                                                        "https://contosocast.azure-mobile.net/", "",
-//                                                        new LoggingHandler ()
-//                                                    );
-        private List<Job> jobs;
-        //private IMobileServiceSyncTable<Job> jobTable;
+        // TODO - add Mobile Service client and Jobs table
 
         public async Task InitializeAsync()
         {
+            // TODO - remove dummy data and open local database
             jobs = GetDummyData();
             await Task.FromResult (0);
         }
 
         public async Task SyncAsync()
         {
+            // TODO - add synchronization code
+
             await Task.FromResult (0);
         }            
 
-        public async Task<IEnumerable<Job>> SearchJobs(string searchInput)
-        {
-            IEnumerable<Job> items = this.jobs;           
-            return await Task.FromResult(items);
-        }
-
         public async Task CompleteJobAsync(Job job)
         {
-            job.Status = Job.CompleteStatus;
+            // TODO - complete the job and update locally
+
             await Task.FromResult (0);
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        #region Other Client Code
 
         public async Task ClearAllJobs()
         {
             jobs = new List<Job> ();
             await Task.FromResult(0);
+        }
+
+        public async Task<IEnumerable<Job>> SearchJobs(string searchInput)
+        {
+            IEnumerable<Job> items = this.jobs;           
+            return await Task.FromResult(items);
         }
 
         private async Task<bool> IsAuthenticated()
@@ -103,6 +120,10 @@ namespace FieldEngineerLite
                 }
             };
         }
+
+        private List<Job> jobs;
+
+        #endregion
     }
 }
 
