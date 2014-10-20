@@ -15,26 +15,44 @@ namespace FieldEngineerLite
     public class JobService
     {
         // TODO - add Mobile Service client and Jobs table
-     
+        private MobileServiceClient MobileService = new MobileServiceClient (
+                                                        "https://contosocast.azure-mobile.net/");
+
 
         public async Task InitializeAsync()
         {
             // TODO - remove dummy data and open local database
-            await Task.FromResult(0);
+            var store = new MobileServiceSQLiteStore ("contosocast.db");
+            store.DefineTable<Job> ();
+
+            await MobileService.SyncContext.InitializeAsync (store);
+
+            jobTable = MobileService.GetSyncTable<Job> ();
+
         }
 
         public async Task SyncAsync()
         {
             // TODO - add synchronization code
 
-            await Task.FromResult (0);
+            await this.MobileService.SyncContext.PushAsync ();
+
+            var query = jobTable.CreateQuery ()
+                                        .Where (job => job.AgentId == "37e865e8-38f1-4e6b-a8ee-b404a188676e");
+
+            await jobTable.PullAsync ("myjobs", query);
+
         }            
 
         public async Task CompleteJobAsync(Job job)
         {
             // TODO - complete the job and update locally
 
-            await Task.FromResult (0);
+            job.Status = Job.CompleteStatus;
+            await jobTable.UpdateAsync (job);
+
+            if(Online)
+                await this.SyncAsync();
         }
 
 
@@ -134,6 +152,7 @@ namespace FieldEngineerLite
 
         private List<Job> jobs;
 
+        public bool Online = true;
         #endregion
     }
 }

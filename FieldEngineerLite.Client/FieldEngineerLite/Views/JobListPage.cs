@@ -42,26 +42,40 @@ namespace FieldEngineerLite.Views
                 await RefreshAsync();
             };
 
+            var onlineLabel = new Label { Text = "Online", Font = AppStyle.DefaultFont, YAlign = TextAlignment.Center };
+            var onlineSwitch = new Switch { IsToggled = true, VerticalOptions = LayoutOptions.Center };
+
+            onlineSwitch.Toggled += async (sender, e) => 
+            {
+                App.JobService.Online = onlineSwitch.IsToggled;
+
+                if(onlineSwitch.IsToggled)
+                {
+                    await App.JobService.SyncAsync();
+                    await RefreshAsync();
+                } 
+            };
+
             var syncButton = new Button
             {
                 HorizontalOptions = LayoutOptions.CenterAndExpand,
                 VerticalOptions = LayoutOptions.CenterAndExpand,
                 Font = AppStyle.DefaultFont,
-                Text = "Sync",
-                WidthRequest = 100
+                Text = "Refresh",
+                WidthRequest = 100,
             };
 
             syncButton.Clicked += async (object sender, EventArgs e) =>
             {
                 try
                 {
-                    syncButton.Text = "Syncing..";
+                    syncButton.Text = "Refreshing..";
                     await App.JobService.SyncAsync();
                     await this.RefreshAsync();
                 }
                 finally
                 {
-                    syncButton.Text = "Sync";
+                    syncButton.Text = "Refresh";
                 }
             };
 
@@ -88,8 +102,9 @@ namespace FieldEngineerLite.Views
                     searchBar,
                     new StackLayout {
                         Orientation = StackOrientation.Horizontal,
+                        HorizontalOptions = LayoutOptions.CenterAndExpand,
                         Children = {
-                            syncButton, clearButton
+                            syncButton, new Label { Text = "   "}, onlineLabel, onlineSwitch
                         }
                     },                                        
 					jobList
@@ -97,10 +112,27 @@ namespace FieldEngineerLite.Views
             };
         }
 
+        public async Task FakeIt()
+        {
+            while(true)
+            {
+                if(App.JobService.Online)
+                {
+                    await App.JobService.SyncAsync();
+                    await RefreshAsync();
+                }
+                await Task.Delay(5000);
+            }
+        }
+
+        Task FakeItTask;
         protected async override void OnAppearing()
         {
             base.OnAppearing();
             await this.RefreshAsync();
+
+            FakeItTask = FakeIt();
+            System.Diagnostics.Debug.WriteLine(FakeItTask);
         }
 
         private async Task ShowJobDetailsAsync(Job selectedJob)
