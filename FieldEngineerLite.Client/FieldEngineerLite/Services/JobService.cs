@@ -155,7 +155,7 @@ namespace FieldEngineerLite
 
         private List<Job> jobs;
 
-        public bool Online = true;
+        public bool Online = false;
         #endregion
     }
 }

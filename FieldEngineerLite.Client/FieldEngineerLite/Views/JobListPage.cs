@@ -43,7 +43,7 @@ namespace FieldEngineerLite.Views
             };
 
             var onlineLabel = new Label { Text = "Online", Font = AppStyle.DefaultFont, YAlign = TextAlignment.Center };
-            var onlineSwitch = new Switch { IsToggled = true, VerticalOptions = LayoutOptions.Center };
+            var onlineSwitch = new Switch { IsToggled = false, VerticalOptions = LayoutOptions.Center };
 
             onlineSwitch.Toggled += async (sender, e) => 
             {
