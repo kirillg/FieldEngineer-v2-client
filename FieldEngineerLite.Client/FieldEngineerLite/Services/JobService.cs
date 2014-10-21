@@ -29,7 +29,7 @@ namespace FieldEngineerLite
         {
             // TODO - load jobs from local storage
 
-
+            throw new NotImplementedException();
         }
 
         public async Task SyncAsync()
