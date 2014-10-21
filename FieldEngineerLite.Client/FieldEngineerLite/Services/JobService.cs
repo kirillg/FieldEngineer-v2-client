@@ -25,6 +25,13 @@ namespace FieldEngineerLite
 
         }
 
+        public async Task UpdateJobAsync(Job job)
+        {
+            // TODO - complete the job and update locally
+
+
+        }
+
         public async Task SyncAsync()
         {
             // TODO - add synchronization code
@@ -32,12 +39,7 @@ namespace FieldEngineerLite
 
         }            
 
-        public async Task UpdateJobAsync(Job job)
-        {
-            // TODO - complete the job and update locally
 
-
-        }
 
 
 
