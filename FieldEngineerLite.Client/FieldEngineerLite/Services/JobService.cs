@@ -32,13 +32,6 @@ namespace FieldEngineerLite
             throw new NotImplementedException();
         }
 
-        public async Task SyncAsync()
-        {
-            // TODO - add synchronization code
-
-
-        }     
-
         public async Task UpdateJobAsync(Job job)
         {
             // TODO - complete the job and update locally
@@ -46,6 +39,12 @@ namespace FieldEngineerLite
 
         }
 
+        public async Task SyncAsync()
+        {
+            // TODO - add synchronization code
+
+
+        }   
                
 
 
