@@ -20,14 +20,14 @@ namespace FieldEngineerLite
 
         public async Task InitializeAsync()
         {
-            // TODO - remove dummy data and open local database
+            // TODO - setup local database
 
 
         }
 
-        public async Task UpdateJobAsync(Job job)
+        public async Task<IEnumerable<Job>> ReadJobs(string search)
         {
-            // TODO - complete the job and update locally
+            // TODO - load jobs from local storage
 
 
         }
@@ -37,7 +37,16 @@ namespace FieldEngineerLite
             // TODO - add synchronization code
 
 
-        }            
+        }     
+
+        public async Task UpdateJobAsync(Job job)
+        {
+            // TODO - complete the job and update locally
+
+
+        }
+
+               
 
 
 

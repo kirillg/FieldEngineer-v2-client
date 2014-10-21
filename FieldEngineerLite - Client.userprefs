@@ -2,10 +2,7 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|Mixed Platforms" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone4s.7.0" />
   <MonoDevelop.Ide.Workbench ActiveDocument="FieldEngineerLite.Client/FieldEngineerLite/Services/JobService.cs">
     <Files>
-      <File FileName="FieldEngineerLite.Client/FieldEngineerLite/Services/JobService.cs" Line="30" Column="30" />
-      <File FileName="FieldEngineerLite.Client/FieldEngineerLite.iOS/AppDelegate.cs" Line="1" Column="1" />
-      <File FileName="FieldEngineerLite.Client/FieldEngineerLite.iOS/Main.cs" Line="1" Column="1" />
-      <File FileName="FieldEngineerLite.Client/FieldEngineerLite/Views/JobListPage.cs" Line="35" Column="35" />
+      <File FileName="FieldEngineerLite.Client/FieldEngineerLite/Services/JobService.cs" Line="10" Column="10" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
