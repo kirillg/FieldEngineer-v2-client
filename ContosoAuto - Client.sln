@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FieldEngineerLite.iOS", "FieldEngineerLite.Client\FieldEngineerLite.iOS\FieldEngineerLite.iOS.csproj", "{59A5B44A-F4EC-4468-8695-BC5F2846F9CE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContsoAuto.iOS", "FieldEngineerLite.Client\FieldEngineerLite.iOS\ContsoAuto.iOS.csproj", "{59A5B44A-F4EC-4468-8695-BC5F2846F9CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FieldEngineerLite.Android", "FieldEngineerLite.Client\FieldEngineerLite.Android\FieldEngineerLite.Android.csproj", "{BDFAB9D7-F1A2-401D-8260-9F593AD288C6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContosoAuto.Android", "FieldEngineerLite.Client\FieldEngineerLite.Android\ContosoAuto.Android.csproj", "{BDFAB9D7-F1A2-401D-8260-9F593AD288C6}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "FieldEngineerLite", "FieldEngineerLite.Client\FieldEngineerLite\FieldEngineerLite.shproj", "{F1003602-A8B5-4DC9-B601-99711543FF2E}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "ContosoAuto", "FieldEngineerLite.Client\FieldEngineerLite\ContosoAuto.shproj", "{F1003602-A8B5-4DC9-B601-99711543FF2E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,8 +19,8 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{59A5B44A-F4EC-4468-8695-BC5F2846F9CE}.Debug|iPhone Simulator.ActiveCfg = Debug|iPhoneSimulator
 		{59A5B44A-F4EC-4468-8695-BC5F2846F9CE}.Debug|iPhone Simulator.Build.0 = Debug|iPhoneSimulator
-		{59A5B44A-F4EC-4468-8695-BC5F2846F9CE}.Debug|Mixed Platforms.ActiveCfg = Debug|iPhoneSimulator
-		{59A5B44A-F4EC-4468-8695-BC5F2846F9CE}.Debug|Mixed Platforms.Build.0 = Debug|iPhoneSimulator
+		{59A5B44A-F4EC-4468-8695-BC5F2846F9CE}.Debug|Mixed Platforms.ActiveCfg = Debug|iPhone
+		{59A5B44A-F4EC-4468-8695-BC5F2846F9CE}.Debug|Mixed Platforms.Build.0 = Debug|iPhone
 		{59A5B44A-F4EC-4468-8695-BC5F2846F9CE}.Release|iPhone Simulator.ActiveCfg = Release|iPhoneSimulator
 		{59A5B44A-F4EC-4468-8695-BC5F2846F9CE}.Release|iPhone Simulator.Build.0 = Release|iPhoneSimulator
 		{59A5B44A-F4EC-4468-8695-BC5F2846F9CE}.Release|Mixed Platforms.ActiveCfg = Release|iPhoneSimulator
@@ -35,7 +35,6 @@ Global
 		{BDFAB9D7-F1A2-401D-8260-9F593AD288C6}.Release|Mixed Platforms.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = FieldEngineerLite.Client\FieldEngineerLite.iOS\FieldEngineerLite.iOS.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
 		$1.FileWidth = 120

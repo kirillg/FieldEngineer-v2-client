@@ -7,7 +7,7 @@ using MonoTouch.UIKit;
 
 using Xamarin.Forms;
 
-namespace FieldEngineerLite.iOS
+namespace ContosoAuto
 {
     // The UIApplicationDelegate for the application. This class is responsible for launching the 
     // User Interface of the application, as well as listening (and optionally responding) to 
@@ -30,7 +30,8 @@ namespace FieldEngineerLite.iOS
             Forms.Init();
             Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
             SQLitePCL.CurrentPlatform.Init();           
-            
+
+            App.JobService.InitMobileService();
             App.JobService.InitializeAsync().Wait();
 
             window = new UIWindow(UIScreen.MainScreen.Bounds);

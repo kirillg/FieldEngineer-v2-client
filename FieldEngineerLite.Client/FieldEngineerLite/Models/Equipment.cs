@@ -1,14 +1,12 @@
 using System;
 
-namespace FieldEngineerLite.Models
+namespace ContosoAuto.Models
 {
-    public class Equipment
+    public class WorkItem
     {
-        public string Id { get; set; }
-        public string EquipmentNumber { get; set; }
+
         public string Name { get; set; }
-        public string Description { get; set; }
-        public string ThumbImage { get; set; }
-        public string FullImage { get; set; }        
+
+        public bool Completed {get; set;}
     }
 }

@@ -7,7 +7,7 @@ using Microsoft.WindowsAzure.MobileServices;
 using Microsoft.WindowsAzure.MobileServices.SQLiteStore;
 
 
-namespace FieldEngineerLite.Helpers
+namespace ContosoAuto.Helpers
 {
     public class MobileServiceSQLiteStoreWithLogging : MobileServiceSQLiteStore
     {

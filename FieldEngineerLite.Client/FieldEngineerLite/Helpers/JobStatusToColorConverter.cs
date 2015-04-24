@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using FieldEngineerLite.Models;
+using ContosoAuto.Models;
 using Xamarin.Forms;
 
-namespace FieldEngineerLite.Helpers
+namespace ContosoAuto.Helpers
 {
     public class JobStatusToColorConverter : IValueConverter
     {

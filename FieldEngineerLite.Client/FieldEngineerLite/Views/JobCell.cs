@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
-using FieldEngineerLite.Helpers;
-using FieldEngineerLite.Models;
+using ContosoAuto.Helpers;
+using ContosoAuto.Models;
 
-namespace FieldEngineerLite.Views
+namespace ContosoAuto.Views
 {
     public class JobCell : ViewCell
     {
@@ -19,7 +19,7 @@ namespace FieldEngineerLite.Views
 
             var customer = new Label();
             customer.Font = AppStyle.DefaultFont;
-            customer.SetBinding<Job>(Label.TextProperty, job => job.Customer.FullName);            
+            customer.SetBinding<Job>(Label.TextProperty, job => job.CustomerName);            
 
             var jobDetails = new StackLayout
             {

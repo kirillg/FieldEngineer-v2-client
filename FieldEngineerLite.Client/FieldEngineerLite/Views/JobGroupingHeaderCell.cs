@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
-using FieldEngineerLite.Helpers;
+using ContosoAuto.Helpers;
 
-namespace FieldEngineerLite.Views
+namespace ContosoAuto.Views
 {
     public class JobGroupingHeaderCell : ViewCell
     {
@@ -17,7 +17,7 @@ namespace FieldEngineerLite.Views
                 VerticalOptions = LayoutOptions.Center
             };
 
-            title.SetBinding(Label.TextProperty, new Binding("Key", stringFormat: "Job Status: {0}"));
+            title.SetBinding(Label.TextProperty, new Binding("Key", stringFormat: "Status: {0}"));
 
             var layout = new StackLayout
             {

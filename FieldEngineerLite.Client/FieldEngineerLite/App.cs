@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Xamarin.Forms;
-using FieldEngineerLite.Views;
+using ContosoAuto.Views;
+using FieldEngineerLite;
 
 #if __IOS__
 using UIContext = MonoTouch.UIKit.UIViewController;
@@ -11,16 +12,17 @@ using UIContext = MonoTouch.UIKit.UIViewController;
 using UIContext = global::Android.Content.Context;
 #endif
 
-namespace FieldEngineerLite
+namespace ContosoAuto
 {
     public class App
     {
         public static UIContext UIContext { get; set; }
         public static JobService JobService = new JobService();
 
+
         public static Page GetMainPage()
         {
-            return new NavigationPage (new JobListPage ());
+            return new NavigationPage (new JobMasterDetailPage ());
         }
     }
 
