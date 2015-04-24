@@ -13,39 +13,39 @@ namespace FieldEngineerLite.Views
     {        
         public JobDetailsPage()
         {
-            TableSection mainSection = new TableSection();     
+            TableSection mainSection = new TableSection("Customer Details");     
             
-            mainSection.Add(new DataElementCell("Title", "Description"));
-            mainSection.Add(new DataElementCell("Customer.FullName", "Customer"));
-            mainSection.Add(new DataElementCell("Customer.Address", "Address") { Height = 60 });
-            mainSection.Add(new DataElementCell("Customer.PrimaryContactNumber", "Telephone"));
+            mainSection.Add(new DataElementCell("CustomerName", "Customer"));
+            mainSection.Add(new DataElementCell("Title", "Customer Notes"));
+            mainSection.Add(new DataElementCell("CustomerAddress", "Address") { Height = 60 });
+            mainSection.Add(new DataElementCell("CustomerPhoneNumber", "Telephone"));
 
             var statusCell = new DataElementCell("Status");
             statusCell.ValueLabel.SetBinding<Job>(Label.TextColorProperty, job => job.Status, converter: new JobStatusToColorConverter());
             mainSection.Add(statusCell);
 
-            var equipmentSection = new TableSection("Equipment");            
-            var equipmentRowTemplate = new DataTemplate(typeof(ImageCell));            
-            equipmentRowTemplate.SetBinding(ImageCell.TextProperty, "Name");
-            equipmentRowTemplate.SetBinding(ImageCell.DetailProperty, "Description");
+            var workSection = new TableSection("Work Performed");            
+            var workRowTemplate = new DataTemplate(typeof(SwitchCell));            
+            workRowTemplate.SetBinding(SwitchCell.TextProperty, "Name");
+            workRowTemplate.SetBinding(SwitchCell.OnProperty, "Completed");
 
 			// I don't have images working on Android yet
-			if (Device.OS == TargetPlatform.iOS) 			
-				equipmentRowTemplate.SetBinding (ImageCell.ImageSourceProperty, "ThumbImage");
+			//if (Device.OS == TargetPlatform.iOS) 			
+			//	equipmentRowTemplate.SetBinding (ImageCell.ImageSourceProperty, "ThumbImage");
 
-            var equipmentListView = new ListView {
+            var workListView = new ListView {
                 RowHeight = 50,
-                ItemTemplate = equipmentRowTemplate
+                ItemTemplate = workRowTemplate
             };
-            equipmentListView.SetBinding<Job>(ListView.ItemsSourceProperty, job => job.Equipments);            
+            workListView.SetBinding<Job>(ListView.ItemsSourceProperty, job => job.Items);            
 
-            var equipmentCell = new ViewCell { View = equipmentListView };            
-            equipmentSection.Add(equipmentCell);
+            var workCell = new ViewCell { View = workListView };            
+            workSection.Add(workCell);
 
             var actionsSection = new TableSection("Actions");
             
             TextCell completeJob = new TextCell { 
-                Text = "Mark Job as Complete",
+                Text = "Mark Completed",
 				TextColor = AppStyle.DefaultActionColor
             };            
             completeJob.Tapped += async delegate {
@@ -55,27 +55,40 @@ namespace FieldEngineerLite.Views
             
             var table = new TableView
             {
+                //BackgroundColor = Color.Transparent,
                 Intent = TableIntent.Form,
                 VerticalOptions = LayoutOptions.FillAndExpand,
                 HasUnevenRows = true,
                 Root = new TableRoot("Root")
                 {
-                    mainSection, actionsSection, equipmentSection
+                    mainSection, workSection, actionsSection, 
                 }
             };
             table.SetBinding<Job>(TableView.BackgroundColorProperty, job => job.Status, converter: new JobStatusToColorConverter(useLightTheme: true));
             
-            this.Title = "Job Details";
-            this.Content = new StackLayout
-            {
-                Orientation = StackOrientation.Vertical,
-                Children = { new JobHeaderView(), table }
+            this.Title = "Appointment Details";
+
+            //this.BackgroundImage = "Fabrikam-568h.png";
+            //var background = new Image() { Aspect = Aspect.AspectFit };
+            //background.Source = ImageSource.FromFile("Fabrikam-568h");
+
+            this.Content = new ScrollView {
+                //VerticalOptions = LayoutOptions.Fill,
+                Orientation = ScrollOrientation.Vertical,
+
+                Content = new StackLayout
+                {
+                    //BackgroundColor = Color.Transparent,
+                    Orientation = StackOrientation.Vertical,
+                    Children = { new JobHeaderView(), table }
+
+                }
             };
 
             this.BindingContextChanged += delegate
             {
-                if (SelectedJob != null && SelectedJob.Equipments != null)
-                    equipmentCell.Height = SelectedJob.Equipments.Count * equipmentListView.RowHeight;
+                if (SelectedJob != null && SelectedJob.Items != null)
+                    workCell.Height = SelectedJob.Items.Count * workListView.RowHeight;
             };
         }
 
@@ -87,6 +100,14 @@ namespace FieldEngineerLite.Views
         private async Task CompleteJobAsync()
         {
             var job = this.SelectedJob;
+            job.WorkPerformed = "";
+            foreach(WorkItem e in job.Items) 
+            {
+              if (e.Completed) 
+              {
+                    job.WorkPerformed += " " + e.Name + ";";
+              }
+            }
             await App.JobService.CompleteJobAsync (job);
 
             // Force a refresh

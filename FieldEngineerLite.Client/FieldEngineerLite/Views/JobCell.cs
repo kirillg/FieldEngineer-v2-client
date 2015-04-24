@@ -19,7 +19,7 @@ namespace FieldEngineerLite.Views
 
             var customer = new Label();
             customer.Font = AppStyle.DefaultFont;
-            customer.SetBinding<Job>(Label.TextProperty, job => job.Customer.FullName);            
+            customer.SetBinding<Job>(Label.TextProperty, job => job.CustomerName);            
 
             var jobDetails = new StackLayout
             {

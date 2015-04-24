@@ -17,7 +17,7 @@ namespace FieldEngineerLite.Views
                 VerticalOptions = LayoutOptions.Center
             };
 
-            title.SetBinding(Label.TextProperty, new Binding("Key", stringFormat: "Job Status: {0}"));
+            title.SetBinding(Label.TextProperty, new Binding("Key", stringFormat: "Status: {0}"));
 
             var layout = new StackLayout
             {

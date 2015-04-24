@@ -15,7 +15,8 @@ namespace FieldEngineerLite.Models
         public string AdditionalContactNumber { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
- 
+        public string WorkPerformed {get; set;}
+
         public string Address 
         {
             get { return string.Format ("{0} {1} {2} {3} {4}", HouseNumberOrName, Street, Town, County, Postcode); }

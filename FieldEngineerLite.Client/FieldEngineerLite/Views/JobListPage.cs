@@ -11,15 +11,15 @@ namespace FieldEngineerLite.Views
 {
     public class JobListPage : ContentPage
     {
-        private SearchBar searchBar;
-        private ListView jobList;
-        private JobDetailsPage detailPage; 
+        //private SearchBar searchBar;
+        public ListView JobList;
+        //public JobDetailsPage DetailPage; 
 
         public JobListPage()
         {
-            detailPage = new JobDetailsPage();
+            //DetailPage = new JobDetailsPage();
 
-            jobList = new ListView
+            JobList = new ListView
             {
                 HasUnevenRows = true,
                 IsGroupingEnabled = true,
@@ -28,22 +28,24 @@ namespace FieldEngineerLite.Views
                 ItemTemplate = new DataTemplate(typeof(JobCell))
             };
             
-            jobList.ItemTapped += async (sender, e) =>
+            /*JobList.ItemTapped += async (sender, e) =>
             {                
                 var selectedJob = e.Item as Job;
                 if (selectedJob != null)
                     await ShowJobDetailsAsync((Job)e.Item);                    
-            };
+            };*/
 
 
-            searchBar = new SearchBar { Placeholder = "Enter search" };
-            searchBar.SearchButtonPressed += async (object sender, EventArgs e) => 
+            //searchBar = new SearchBar { Placeholder = "Enter search" };
+            /*searchBar.SearchButtonPressed += async (object sender, EventArgs e) => 
             {
                 await RefreshAsync();
-            };
+            };*/
 
             var onlineLabel = new Label { Text = "Online", Font = AppStyle.DefaultFont, YAlign = TextAlignment.Center };
-            var onlineSwitch = new Switch { IsToggled = false, VerticalOptions = LayoutOptions.Center };
+            var onlineSwitch = new Switch { IsToggled = true, VerticalOptions = LayoutOptions.Center };
+
+            App.JobService.Online = onlineSwitch.IsToggled;
 
             onlineSwitch.Toggled += async (sender, e) => 
             {
@@ -94,22 +96,29 @@ namespace FieldEngineerLite.Views
                 await this.RefreshAsync();
             };
 
-            this.Title = "All Jobs";
+            this.Title = "Appointments";
+            //var background = new Image() { Aspect = Aspect.AspectFit };
+            //background.Source = ImageSource.FromFile("Fabrikam-568h");
+            //background.
+            var logo = new Image(){Aspect = Aspect.AspectFit};
+            logo.Source = ImageSource.FromFile("Fabrikam-small.png");
             this.Content = new StackLayout
             {
                 Orientation = StackOrientation.Vertical,
                 Children = {
-                    searchBar,
+                    //searchBar,
                     new StackLayout {
                         Orientation = StackOrientation.Horizontal,
-                        HorizontalOptions = LayoutOptions.CenterAndExpand,
+                        HorizontalOptions = LayoutOptions.StartAndExpand,
                         Children = {
+                            logo,
                             syncButton, new Label { Text = "   "}, onlineLabel, onlineSwitch
                         }
                     },                                        
-					jobList
+					JobList
 				}
             };
+            //this.RefreshAsync().Wait();
         }
 
         public async Task FakeIt()
@@ -136,19 +145,16 @@ namespace FieldEngineerLite.Views
             System.Diagnostics.Debug.WriteLine(FakeItTask);
         }
 
-        private async Task ShowJobDetailsAsync(Job selectedJob)
-        {                        
-            detailPage.BindingContext = selectedJob;
-            await this.Navigation.PushAsync(detailPage);
-        }
+       
             
-        private async Task RefreshAsync()
+        public async Task RefreshAsync()
         {        
-            var groups = from job in await App.JobService.SearchJobs (searchBar.Text)
+            //if (App.JobService.LoginInProgress == true) return;
+            var groups = from job in await App.JobService.ReadJobs ("")
                          group job by job.Status into jobGroup                        
                          select jobGroup;
 
-            jobList.ItemsSource = groups.OrderBy(group => GetJobSortOrder(group.Key));     
+            JobList.ItemsSource = groups.OrderBy(group => GetJobSortOrder(group.Key));     
         }
 
         private int GetJobSortOrder(string status)

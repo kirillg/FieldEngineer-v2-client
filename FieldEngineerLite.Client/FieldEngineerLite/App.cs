@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using FieldEngineerLite.Views;
+using FieldEngineerLite;
 
 #if __IOS__
 using UIContext = MonoTouch.UIKit.UIViewController;
@@ -18,9 +19,10 @@ namespace FieldEngineerLite
         public static UIContext UIContext { get; set; }
         public static JobService JobService = new JobService();
 
+
         public static Page GetMainPage()
         {
-            return new NavigationPage (new JobListPage ());
+            return new NavigationPage (new JobMasterDetailPage ());
         }
     }
 

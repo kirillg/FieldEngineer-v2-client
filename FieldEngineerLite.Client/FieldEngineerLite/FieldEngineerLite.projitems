@@ -21,6 +21,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\LoggingHelpers.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\JobService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\JobHeaderView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\JobMasterDetailPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Helpers\" />
