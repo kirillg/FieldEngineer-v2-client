@@ -19,9 +19,9 @@ namespace FieldEngineerLite.Droid
             base.OnCreate(bundle);
 
             Xamarin.Forms.Forms.Init(this, bundle);
-			App.JobService.InitializeAsync().Wait();
+            App.JobService.InitializeAsync().Wait();
 
-			App.UIContext = this;
+            App.UIContext = this;
             SetPage(App.GetMainPage());
         }
     }

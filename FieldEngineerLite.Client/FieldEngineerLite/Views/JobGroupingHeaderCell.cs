@@ -12,7 +12,7 @@ namespace FieldEngineerLite.Views
         {
             var title = new Label
             {
-				Font = AppStyle.DefaultFont.WithSize(NamedSize.Medium).WithAttributes(FontAttributes.Bold),
+                Font = AppStyle.DefaultFont.WithSize(NamedSize.Medium).WithAttributes(FontAttributes.Bold),
                 TextColor = Color.White,
                 VerticalOptions = LayoutOptions.Center
             };

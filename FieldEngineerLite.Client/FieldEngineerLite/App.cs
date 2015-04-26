@@ -28,18 +28,18 @@ namespace FieldEngineerLite
 
     public static class AppStyle
     {
-		public static NamedSize DefaultFontSize =  Device.OnPlatform(
-			iOS: NamedSize.Small,
-			Android: NamedSize.Medium,
-			WinPhone: NamedSize.Medium
-		);
+        public static NamedSize DefaultFontSize =  Device.OnPlatform(
+            iOS: NamedSize.Small,
+            Android: NamedSize.Medium,
+            WinPhone: NamedSize.Medium
+        );
 
-		public static Color DefaultActionColor = Device.OnPlatform(
-			iOS: Color.Blue,
-			Android: Color.Accent,
-			WinPhone: Color.Accent
-		);
-			
+        public static Color DefaultActionColor = Device.OnPlatform(
+            iOS: Color.Blue,
+            Android: Color.Accent,
+            WinPhone: Color.Accent
+        );
+            
         public static readonly Font DefaultFont = Device.OnPlatform(
             iOS: Font.OfSize("Avenir", DefaultFontSize),
             Android: Font.SystemFontOfSize(DefaultFontSize),

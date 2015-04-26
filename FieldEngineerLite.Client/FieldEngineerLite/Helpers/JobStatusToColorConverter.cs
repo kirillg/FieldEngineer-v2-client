@@ -12,7 +12,7 @@ namespace FieldEngineerLite.Helpers
 
         public JobStatusToColorConverter(bool useLightTheme = false)
         {
-			this.useLightTheme = useLightTheme; 
+            this.useLightTheme = useLightTheme; 
         }
 
         private Color GetColorFromStatus(string status)
@@ -36,13 +36,13 @@ namespace FieldEngineerLite.Helpers
             var color = GetColorFromStatus(status);
             if (useLightTheme)
             {
-				var luminosityModifier = Device.OnPlatform(
-					iOS: 0.95, 
-					Android: 0.1, 
-					WinPhone: 0.1
-				);
+                var luminosityModifier = Device.OnPlatform(
+                    iOS: 0.95, 
+                    Android: 0.1, 
+                    WinPhone: 0.1
+                );
 
-				color = color.WithLuminosity(luminosityModifier);
+                color = color.WithLuminosity(luminosityModifier);
             }
 
             return color;

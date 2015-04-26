@@ -1,82 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
-using Microsoft.WindowsAzure.MobileServices;
-using Microsoft.WindowsAzure.MobileServices.SQLiteStore;
-using Microsoft.WindowsAzure.MobileServices.Sync;
-using FieldEngineerLite.Helpers;
 using FieldEngineerLite.Models;
-using System.Threading;
-using System.Runtime.InteropServices;
-using System.Security.Cryptography;
-using System.Net.Http;
-using Xamarin.Forms;
-using System.Reflection;
 
-#if false
 namespace FieldEngineerLite
 {
-
     public class JobService
     {
-        public MobileServiceClient MobileService =
-            new MobileServiceClient(
-            "https://fieldengineerlite-code.azurewebsites.net",
-            "https://fieldengineerlite-rg3de4f453d3934e29b477bd2b4ff43a83.azurewebsites.net",
-            "cPeHjNEDGgXLTnMWvJogCMUfyaQVlZ83"
-        );
+        private List<Job> jobs;
+        public bool LoginInProgress = false;
+        public bool Online = false;            
 
         public async Task InitializeAsync()
         {
-            //2. replace with init
-            var store = new MobileServiceSQLiteStore("localdb-fabrikam2.db");
-            store.DefineTable<Job>();
-
-            await MobileService.SyncContext.InitializeAsync(store);
-
-            jobTable = MobileService.GetSyncTable<Job>();
+            jobs = GetDummyData();
         }
 
         public async Task<IEnumerable<Job>> ReadJobs(string search)
         {
-            //3. replace with read
-            var query = jobTable.CreateQuery();
-            if (string.IsNullOrEmpty(search) == false)
-            {
-                query = query.Where(job => (job.Title == search));
-            }
-            return await query.ToEnumerableAsync();
+            return jobs;
         }
 
         public async Task UpdateJobAsync(Job job)
         {
             job.Status = Job.CompleteStatus;
-            //4. add update
-            await jobTable.UpdateAsync(job);
         }
 
         public async Task SyncAsync()
         {
-            //6. add auth
-
-
-            //5. add sync
-            try
-            {
-                await this.MobileService.SyncContext.PushAsync();
-
-                var query = jobTable.CreateQuery()
-                                .Where(job => job.AgentId == "2");
-
-                await jobTable.PullAsync(null, query);
-            }
-            catch (Exception)
-            { 
-            }
+            await Task.FromResult(0);
         }
-
-        private IMobileServiceSyncTable<Job> jobTable;
 
         public async Task ClearAllJobs()
         {
@@ -133,11 +87,5 @@ namespace FieldEngineerLite
             };
         }
 
-        private List<Job> jobs;
-        public bool LoginInProgress = false;
-        public bool Online = false;
-
     }
 }
-
-#endif

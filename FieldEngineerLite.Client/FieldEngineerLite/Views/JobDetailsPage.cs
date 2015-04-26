@@ -29,9 +29,9 @@ namespace FieldEngineerLite.Views
             workRowTemplate.SetBinding(SwitchCell.TextProperty, "Name");
             workRowTemplate.SetBinding(SwitchCell.OnProperty, "Completed");
 
-			// I don't have images working on Android yet
-			//if (Device.OS == TargetPlatform.iOS) 			
-			//	equipmentRowTemplate.SetBinding (ImageCell.ImageSourceProperty, "ThumbImage");
+            // I don't have images working on Android yet
+            //if (Device.OS == TargetPlatform.iOS) 			
+            //	equipmentRowTemplate.SetBinding (ImageCell.ImageSourceProperty, "ThumbImage");
 
             var workListView = new ListView {
                 RowHeight = 50,
@@ -46,11 +46,13 @@ namespace FieldEngineerLite.Views
             
             TextCell completeJob = new TextCell { 
                 Text = "Mark Completed",
-				TextColor = AppStyle.DefaultActionColor
-            };            
+                TextColor = AppStyle.DefaultActionColor
+            };   
+         
             completeJob.Tapped += async delegate {
                 await this.CompleteJobAsync();
             };
+
             actionsSection.Add(completeJob);
             
             var table = new TableView
@@ -64,6 +66,7 @@ namespace FieldEngineerLite.Views
                     mainSection, workSection, actionsSection, 
                 }
             };
+
             table.SetBinding<Job>(TableView.BackgroundColorProperty, job => job.Status, converter: new JobStatusToColorConverter(useLightTheme: true));
             
             this.Title = "Appointment Details";
@@ -92,27 +95,27 @@ namespace FieldEngineerLite.Views
             };
         }
 
-        private Job SelectedJob
-        {
-            get { return this.BindingContext as Job; }
-        }
-
         private async Task CompleteJobAsync()
         {
             var job = this.SelectedJob;
             job.WorkPerformed = "";
-            foreach(WorkItem e in job.Items) 
+            foreach (WorkItem e in job.Items)
             {
-              if (e.Completed) 
-              {
+                if (e.Completed)
+                {
                     job.WorkPerformed += " " + e.Name + ";";
-              }
+                }
             }
-            await App.JobService.CompleteJobAsync (job);
+            await App.JobService.CompleteJobAsync(job);
 
             // Force a refresh
             this.BindingContext = null;
             this.BindingContext = job;
+        }
+
+        private Job SelectedJob
+        {
+            get { return this.BindingContext as Job; }
         }
 
         private class DataElementCell : ViewCell

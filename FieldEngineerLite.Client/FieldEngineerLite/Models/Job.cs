@@ -11,12 +11,12 @@ namespace FieldEngineerLite.Models
         {
             Items = new List<WorkItem> 
             {
-                new WorkItem {Name = "Change Oil", Completed = false},
-                new WorkItem {Name = "Fix Brakes", Completed = false},
-                new WorkItem {Name = "Change Filter", Completed = false}
+                new WorkItem {Name = "Replace cable box", Completed = false},
+                new WorkItem {Name = "Repair cable outlet", Completed = false},
+                new WorkItem {Name = "Fix cable wiring", Completed = false}
             };
-
         }
+
         public const string CompleteStatus = "Completed";
         public const string InProgressStatus = "In Progress";
         public const string PendingStatus = "Not Started";
@@ -32,14 +32,11 @@ namespace FieldEngineerLite.Models
         public string CustomerAddress { get; set; }
         public string CustomerPhoneNumber { get; set; }
         public string WorkPerformed { get; set; }
-        [JsonIgnore]
-        public List<WorkItem> Items{get; set;}
-
-
-
 
         [Version]
         public string Version { get; set; }
 
+        [JsonIgnore]
+        public List<WorkItem> Items { get; set; }
     }
 }

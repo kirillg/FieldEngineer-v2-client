@@ -10,52 +10,47 @@ using FieldEngineerLite.Views;
 
 namespace FieldEngineerLite
 {
-
-    public class MyNavigationPage :NavigationPage 
+    public class MyNavigationPage : NavigationPage
     {
-        public MyNavigationPage(Page root): base(root)
+        public MyNavigationPage(Page root)
+            : base(root)
         {
-            NavigationPage.SetHasNavigationBar (this, false);
-
+            NavigationPage.SetHasNavigationBar(this, false);
         }
     }
+
     public class JobMasterDetailPage : MasterDetailPage
     {
-
-        public JobMasterDetailPage ()
+        public JobMasterDetailPage()
         {
             JobListPage listPage = new JobListPage();
-            listPage.JobList.ItemSelected += (sender, e) => 
+            listPage.JobList.ItemSelected += (sender, e) =>
             {
                 var selectedJob = e.SelectedItem as Job;
                 if (selectedJob != null)
                 {
-                    NavigateTo (e.SelectedItem as Job);
+                    NavigateTo(e.SelectedItem as Job);
                 }
             };
+
             Master = listPage;
             JobDetailsPage details = new JobDetailsPage();
 
             details.Content.IsVisible = false;
             Detail = new MyNavigationPage(details);
-
-
-
             //this.IsPresented = true;
-
-
-
         }
+
         protected async override void OnAppearing()
         {
             base.OnAppearing();
+            
             var jobs = await App.JobService.ReadJobs("");
             if (jobs.Count() > 0)
             {
                 Job job = jobs.First();
                 NavigateTo(job);
             }
-
         }
 
         public void NavigateTo(Job item)

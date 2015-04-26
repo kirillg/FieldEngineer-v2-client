@@ -31,7 +31,6 @@ namespace FieldEngineerLite.iOS
             Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
             SQLitePCL.CurrentPlatform.Init();           
 
-            App.JobService.InitMobileService();
             App.JobService.InitializeAsync().Wait();
 
             window = new UIWindow(UIScreen.MainScreen.Bounds);
