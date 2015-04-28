@@ -1,8 +1,30 @@
 ﻿<Properties StartupItem="FieldEngineerLite.Client/FieldEngineerLite.iOS/FieldEngineerLite.iOS.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|Mixed Platforms" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPad2.8.3" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="FieldEngineerLite.Client/FieldEngineerLite/Services/JobService.cs">
+    <Files>
+      <File FileName="FieldEngineerLite.Client/FieldEngineerLite/Models/Job.cs" Line="35" Column="35" />
+      <File FileName="FieldEngineerLite.Client/FieldEngineerLite/Services/MockJobService.cs" Line="7" Column="7" />
+      <File FileName="FieldEngineerLite.Client/FieldEngineerLite/Services/JobService.cs" Line="37" Column="37" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True" selected="True">
+          <Node name="FieldEngineerLite" expanded="True">
+            <Node name="Helpers" expanded="True" />
+            <Node name="Models" expanded="True" />
+            <Node name="Services" expanded="True" />
+            <Node name="Views" expanded="True" />
+          </Node>
+          <Node name="FieldEngineerLite.iOS" expanded="True" />
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <DisabledProjects>
+    <String>FieldEngineerLite.Client/FieldEngineerLite.Android/FieldEngineerLite.Android.csproj</String>
+  </DisabledProjects>
 </Properties>
