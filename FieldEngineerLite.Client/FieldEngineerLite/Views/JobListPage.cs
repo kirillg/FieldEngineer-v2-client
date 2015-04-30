@@ -124,29 +124,13 @@ namespace FieldEngineerLite.Views
                 webViewPage.Title = "Authorize";
                 webViewPage.Content = new StackLayout {
                     Orientation = StackOrientation.Vertical,
-                    //HorizontalOptions = LayoutOptions.Center,
-                    //VerticalOptions = LayoutOptions.FillAndExpand,
+                 
                     Children = {
-                        /*new StackLayout {
-                            Orientation = StackOrientation.Horizontal,
-                            HorizontalOptions = LayoutOptions.StartAndExpand,
-                            Children = {
-                               closeButton, 
-                               new Label {
-                                    Text = "Authorize",
-                                    HorizontalOptions = LayoutOptions.CenterAndExpand,
-                                    VerticalOptions = LayoutOptions.CenterAndExpand,
-                                    WidthRequest = 100
-                                }
-                            },
-                            HeightRequest = 20
-                        },*/
+                       
                         browser
                     }
                 };
-                /*browser.Unfocused += async (Object sender, FocusEventArgs ee) => {
-                    await webViewPage.Navigation.PopModalAsync();
-                };*/
+               
 
                 await this.Navigation.PushAsync(webViewPage);
 

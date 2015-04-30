@@ -1,15 +1,35 @@
 ﻿<Properties StartupItem="FieldEngineerLite.Client/FieldEngineerLite.iOS/FieldEngineerLite.iOS.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone Simulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPad2.8.3" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="FieldEngineerLite.Client/FieldEngineerLite.iOS/AppDelegate.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="FieldEngineerLite.Client/FieldEngineerLite/Services/MockJobService.cs">
     <Files>
-      <File FileName="FieldEngineerLite.Client/FieldEngineerLite/Services/JobService.cs" Line="41" Column="73" />
-      <File FileName="FieldEngineerLite.Client/FieldEngineerLite.iOS/AppDelegate.cs" Line="30" Column="1" />
-      <File FileName="FieldEngineerLite.Client/FieldEngineerLite.iOS/Main.cs" Line="17" Column="21" />
+      <File FileName="FieldEngineerLite.Client/FieldEngineerLite/Services/JobService.cs" Line="41" Column="12" />
+      <File FileName="FieldEngineerLite.Client/FieldEngineerLite.iOS/AppDelegate.cs" Line="28" Column="52" />
+      <File FileName="FieldEngineerLite.Client/FieldEngineerLite.iOS/Main.cs" Line="17" Column="1" />
       <File FileName="FieldEngineerLite.Client/FieldEngineerLite.iOS/Properties/AssemblyInfo.cs" Line="1" Column="1" />
-      <File FileName="FieldEngineerLite.Client/FieldEngineerLite/App.cs" Line="26" Column="9" />
-      <File FileName="FieldEngineerLite.Client/FieldEngineerLite/Views/JobListPage.cs" Line="32" Column="60" />
-      <File FileName="FieldEngineerLite.Client/FieldEngineerLite/Views/JobMasterDetailPage.cs" Line="1" Column="1" />
+      <File FileName="FieldEngineerLite.Client/FieldEngineerLite/App.cs" Line="24" Column="49" />
+      <File FileName="FieldEngineerLite.Client/FieldEngineerLite/Views/JobListPage.cs" Line="162" Column="50" />
+      <File FileName="FieldEngineerLite.Client/FieldEngineerLite/Views/JobMasterDetailPage.cs" Line="24" Column="6" />
+      <File FileName="FieldEngineerLite.Client/FieldEngineerLite/Views/JobDetailsPage.cs" Line="104" Column="35" />
+      <File FileName="FieldEngineerLite.Client/FieldEngineerLite/Services/MockJobService.cs" Line="1" Column="1" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="FieldEngineerLite" expanded="True">
+            <Node name="Services" expanded="True">
+              <Node name="MockJobService.cs" selected="True" />
+            </Node>
+            <Node name="Views" expanded="True" />
+          </Node>
+          <Node name="FieldEngineerLite.iOS" expanded="True">
+            <Node name="References" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

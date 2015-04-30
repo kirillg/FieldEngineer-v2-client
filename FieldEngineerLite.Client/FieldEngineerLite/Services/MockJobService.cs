@@ -6,47 +6,16 @@ using FieldEngineerLite.Models;
 
 namespace FieldEngineerLite
 {
-    public class JobService
+    public class MockData
     {
-        private List<Job> jobs;
-        public bool LoginInProgress = false;
-        public bool Online = false;            
-
-        public async Task InitializeAsync()
+        public MockData()
         {
-            jobs = GetDummyData();
+            Jobs = GetDummyData();            
         }
+        
+        public List<Job> Jobs;
 
-        public async Task<IEnumerable<Job>> ReadJobs(string search)
-        {
-            return jobs;
-        }
-
-        public async Task UpdateJobAsync(Job job)
-        {
-            job.Status = Job.CompleteStatus;
-        }
-
-        public async Task SyncAsync()
-        {
-            await Task.FromResult(0);
-        }
-
-        public async Task ClearAllJobs()
-        {
-            jobs = new List<Job>();
-            await Task.FromResult(0);
-        }
-
-        public async Task CompleteJobAsync(Job job)
-        {
-            await UpdateJobAsync(job);
-
-            if (Online)
-                await this.SyncAsync();
-        }
-
-        private List<Job> GetDummyData()
+        private static List<Job> GetDummyData()
         {
             return new List<Job> {
                 new Job 

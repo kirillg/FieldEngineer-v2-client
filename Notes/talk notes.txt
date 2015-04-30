@@ -1,0 +1,51 @@
+Build talk notes
+
+Bring together all these "lego bricks" that are multiple pieces of an overall system
+app -> system
+
+
+Start out with mock data
+- Connect to Salesforce -> source of truth for the customer data
+
+- But also a SQL database that has additional information about equipment status, SLA for technicians, and can roll up into a bigger data analysis (e.g., which jobs is technician best at, what kinds of customer problems are occuring with what frequency)
+
+- Hybrid data (some is on devices, some is in SQL, some is in a CRM system)
+
+- Talk about what's in each blade of the new portal experience
+	- push
+	- auth
+	- master/app key
+	- quickstarts
+
+	But now! you can get to the code!  
+
+	Previously it was hosted in its own compute container that you could not manipulate directly. This let Mobile Services manage a lot for you, but we found  that customers really want to be able to customize the compute environment
+
+	Azure Websites -> Azure Web App
+
+	Now, that compute environment is shared with all of App Service (and if you're interested in the technical details, there is a "code" site that is hosted on Azure Websites)
+
+- Let's go to Visual Studio 
+
+	Job is an entity that represents the data in the database. 
+
+	When you add the scafolding, you get a special kind of "API controller" which adds OData querying capabilities (sort, filter, select) AND exposes the right semantics so that the client **SDKs** can work offline
+
+- Get a nice view on the Salesforce SDK, and the authentication token is flowing through
+
+
+
+Webjobs feature
+	- Since all of Azure Web App features are in the same compute container, your Azure Mobile App backend gets all of these "Azure Websites" features
+
+You can use the gateway to authenticate any of your clients, such as Logic Apps, API Apps, Mobile Apps, etc
+
+___
+
+Logic -> automate business processes in a reliable way
+(you don't have to write a lot of code to automate these)
+You can if you want, in which case you'd use WebJobs
+
+
+
+
