@@ -14,23 +14,32 @@ using System.Net.Http;
 using Xamarin.Forms;
 using System.Reflection;
 
-#if false
+//if false
+using Microsoft.Azure.AppService;
+
+
 namespace FieldEngineerLite
 {
 
     public class JobService
     {
-        public MobileServiceClient MobileService =
-            new MobileServiceClient(
-            "https://fieldengineerlite-code.azurewebsites.net",
-            "https://fieldengineerlite-rg3de4f453d3934e29b477bd2b4ff43a83.azurewebsites.net",
-            "cPeHjNEDGgXLTnMWvJogCMUfyaQVlZ83"
-        );
+        public MobileServiceClient MobileService = new MobileServiceClient(
+            "https://fetechnician-code.azurewebsites.net/",
+            "https://fieldengineeref90e9309d7f4a608a99748e0eea69de.azurewebsites.net",
+            "OtFsjAFDBBMENsPCBQFJmItwjvAfaX77");
+
+        public AppServiceClient AppService = 
+            new AppServiceClient("https://fieldengineeref90e9309d7f4a608a99748e0eea69de.azurewebsites.net");
+            
+       
 
         public async Task InitializeAsync()
         {
+            
+
             //2. replace with init
-            var store = new MobileServiceSQLiteStore("localdb-fabrikam2.db");
+           
+            var store = new MobileServiceSQLiteStore("localdb-fabrikam12.db");
             store.DefineTable<Job>();
 
             await MobileService.SyncContext.InitializeAsync(store);
@@ -60,7 +69,7 @@ namespace FieldEngineerLite
         {
             //6. add auth
 
-
+            await EnsureLogin();
             //5. add sync
             try
             {
@@ -75,6 +84,21 @@ namespace FieldEngineerLite
             { 
             }
         }
+        public async Task EnsureLogin()
+        {
+            LoginInProgress = true;
+            while (this.AppService.CurrentUser == null) {
+                //await this.AppService.LoginAsync(
+                await this.MobileService.LoginAsync (App.UIContext, 
+                    MobileServiceAuthenticationProvider.WindowsAzureActiveDirectory);
+                this.AppService.SetCurrentUser(this.MobileService.CurrentUser.UserId, this.MobileService.CurrentUser.MobileServiceAuthenticationToken);
+
+            }
+
+            LoginInProgress = false;
+
+        }
+
 
         private IMobileServiceSyncTable<Job> jobTable;
 
@@ -140,4 +164,4 @@ namespace FieldEngineerLite
     }
 }
 
-#endif
+//#endif

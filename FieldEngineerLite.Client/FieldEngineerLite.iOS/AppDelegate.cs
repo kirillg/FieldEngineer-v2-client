@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 using Xamarin.Forms;
 
@@ -13,10 +13,10 @@ namespace FieldEngineerLite.iOS
     // User Interface of the application, as well as listening (and optionally responding) to 
     // application events from iOS.
     [Register("AppDelegate")]
-    public partial class AppDelegate : UIApplicationDelegate
+    public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate 
     {
         // class-level declarations
-        UIWindow window;
+        //UIWindow window;
 
         //
         // This method is invoked when the application has loaded and is ready to run. In this 
@@ -29,17 +29,30 @@ namespace FieldEngineerLite.iOS
         {
             Forms.Init();
             Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
-            SQLitePCL.CurrentPlatform.Init();           
+            SQLitePCL.CurrentPlatform.Init();         
 
+            var myapp = new App();
+          
             App.JobService.InitializeAsync().Wait();
 
-            window = new UIWindow(UIScreen.MainScreen.Bounds);
+            LoadApplication(myapp);
+            /*window = new UIWindow(UIScreen.MainScreen.Bounds);
             window.RootViewController = App.GetMainPage().CreateViewController();
-            window.MakeKeyAndVisible();
+            window.MakeKeyAndVisible();*/
 
-            App.UIContext = window.RootViewController;
-            return true;
+
+
+            //var foo = this.Window.RootViewController;
+
+            var success = base.FinishedLaunching (app, options);
+
+            App.UIContext = UIApplication.SharedApplication.KeyWindow.RootViewController;
+            //App.UIContext = this.Window.RootViewController;
+            return success;
+             
         }
+
+
 
 
     }

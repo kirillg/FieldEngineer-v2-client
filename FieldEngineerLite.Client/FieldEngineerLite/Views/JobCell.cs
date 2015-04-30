@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
@@ -14,11 +14,11 @@ namespace FieldEngineerLite.Views
             var jobHeader = new JobHeaderView();
 
             var title = new Label();
-            title.Font = AppStyle.DefaultFont;
+            //title.Font = AppStyle.DefaultFont;
             title.SetBinding<Job>(Label.TextProperty, job => job.Title);
 
             var customer = new Label();
-            customer.Font = AppStyle.DefaultFont;
+            //customer.Font = AppStyle.DefaultFont;
             customer.SetBinding<Job>(Label.TextProperty, job => job.CustomerName);            
 
             var jobDetails = new StackLayout
@@ -31,11 +31,11 @@ namespace FieldEngineerLite.Views
                     {
                         Orientation = StackOrientation.Horizontal,
                         Children = {
-                            new Label { Text = "Customer:", Font = AppStyle.DefaultFont.WithAttributes(FontAttributes.Bold) },
+                            new Label { Text = "Customer:", FontAttributes = FontAttributes.Bold },
                             customer
                         }
                     },
-                    new Label { Text = "Description:", Font = AppStyle.DefaultFont.WithAttributes(FontAttributes.Bold) },
+                    new Label { Text = "Description:", FontAttributes = FontAttributes.Bold },
                     title
                 }
             };

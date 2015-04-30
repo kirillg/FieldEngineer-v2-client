@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
@@ -12,7 +12,8 @@ namespace FieldEngineerLite.Views
         {
             var title = new Label
             {
-                Font = AppStyle.DefaultFont.WithSize(NamedSize.Medium).WithAttributes(FontAttributes.Bold),
+                FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label)),
+                FontAttributes = FontAttributes.Bold,
                 TextColor = Color.White,
                 VerticalOptions = LayoutOptions.Center
             };

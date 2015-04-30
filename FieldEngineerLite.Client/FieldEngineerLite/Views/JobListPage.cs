@@ -6,17 +6,22 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using FieldEngineerLite.Helpers;
 using FieldEngineerLite.Models;
+using Microsoft.Azure.AppService;
+using UIKit;
+using HomeKit;
 
 namespace FieldEngineerLite.Views
 {
     public class JobListPage : ContentPage
     {
+
         private const bool DEFAULT_ONLINE_STATE = false;
 
         public ListView JobList;
 
         public JobListPage()
         {
+
             JobList = new ListView
             {
                 HasUnevenRows = true,
@@ -85,12 +90,80 @@ namespace FieldEngineerLite.Views
             var logo = new Image() { Aspect = Aspect.AspectFit };
             logo.Source = ImageSource.FromFile("Fabrikam-small.png");
 
+            var tapGestureRecognizer = new TapGestureRecognizer();
+            tapGestureRecognizer.Tapped += async (s, e) => {
+                
+                await App.JobService.EnsureLogin();
+
+                var consentlink = await App.JobService.AppService.GetConsentLinkAsync("SalesforceConnector", "javascript:close()");
+
+                var browser = new WebView {
+                    
+                    //HorizontalOptions = LayoutOptions.CenterAndExpand,
+                    VerticalOptions = LayoutOptions.FillAndExpand,
+                    Source = consentlink,
+                    //HeightRequest = 500
+
+
+
+                };
+                var closeButton = new Button
+                {
+                    HorizontalOptions = LayoutOptions.CenterAndExpand,
+                    VerticalOptions = LayoutOptions.CenterAndExpand,
+                    Font = AppStyle.DefaultFont,
+                    Text = "Close",
+                    WidthRequest = 50,
+                };
+                closeButton.Clicked += async (object sender, EventArgs ev) =>
+                {
+                    await this.Navigation.PopAsync();
+                };
+
+                ContentPage webViewPage = new ContentPage();
+                webViewPage.Title = "Authorize";
+                webViewPage.Content = new StackLayout {
+                    Orientation = StackOrientation.Vertical,
+                    //HorizontalOptions = LayoutOptions.Center,
+                    //VerticalOptions = LayoutOptions.FillAndExpand,
+                    Children = {
+                        /*new StackLayout {
+                            Orientation = StackOrientation.Horizontal,
+                            HorizontalOptions = LayoutOptions.StartAndExpand,
+                            Children = {
+                               closeButton, 
+                               new Label {
+                                    Text = "Authorize",
+                                    HorizontalOptions = LayoutOptions.CenterAndExpand,
+                                    VerticalOptions = LayoutOptions.CenterAndExpand,
+                                    WidthRequest = 100
+                                }
+                            },
+                            HeightRequest = 20
+                        },*/
+                        browser
+                    }
+                };
+                /*browser.Unfocused += async (Object sender, FocusEventArgs ee) => {
+                    await webViewPage.Navigation.PopModalAsync();
+                };*/
+
+                await this.Navigation.PushAsync(webViewPage);
+
+
+
+
+            };
+        logo.GestureRecognizers.Add(tapGestureRecognizer);
+
             this.Content = new StackLayout
             {
                 Orientation = StackOrientation.Vertical,
+                Padding = new Thickness {Top = 15},
                 Children = {
                     //searchBar,
                     new StackLayout {
+                        
                         Orientation = StackOrientation.Horizontal,
                         HorizontalOptions = LayoutOptions.StartAndExpand,
                         Children = {

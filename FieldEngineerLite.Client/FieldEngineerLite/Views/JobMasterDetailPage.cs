@@ -21,8 +21,11 @@ namespace FieldEngineerLite
 
     public class JobMasterDetailPage : MasterDetailPage
     {
+     
+
         public JobMasterDetailPage()
         {
+       
             JobListPage listPage = new JobListPage();
             listPage.JobList.ItemSelected += (sender, e) =>
             {
