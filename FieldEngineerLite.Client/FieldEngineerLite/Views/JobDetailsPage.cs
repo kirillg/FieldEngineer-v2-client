@@ -11,8 +11,12 @@ namespace FieldEngineerLite.Views
 {	
     public class JobDetailsPage : ContentPage
     {        
+        
+
         public JobDetailsPage()
         {
+
+
             TableSection mainSection = new TableSection("Customer Details");     
             
             mainSection.Add(new DataElementCell("CustomerName", "Customer"));
@@ -127,13 +131,13 @@ namespace FieldEngineerLite.Views
             {
                 DescriptionLabel = new Label {
                     Text = propertyDescription ?? property,
-                    Font = AppStyle.DefaultFont.WithAttributes(FontAttributes.Bold),
+                    FontAttributes = FontAttributes.Bold,
                     WidthRequest = 150,
                     VerticalOptions = LayoutOptions.CenterAndExpand                
                 };
 
                 ValueLabel = new Label {
-                    Font = AppStyle.DefaultFont,
+                    //Font = AppStyle.DefaultFont,
                     HorizontalOptions = LayoutOptions.FillAndExpand,
                     VerticalOptions = LayoutOptions.CenterAndExpand,
                     XAlign = TextAlignment.End

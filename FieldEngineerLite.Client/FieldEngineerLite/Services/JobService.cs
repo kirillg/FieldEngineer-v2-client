@@ -14,6 +14,9 @@ using System.Net.Http;
 using Xamarin.Forms;
 using System.Reflection;
 
+using Microsoft.Azure.AppService;
+
+
 namespace FieldEngineerLite
 {
 
@@ -29,11 +32,12 @@ namespace FieldEngineerLite
         // 1. add client initializer
         public MobileServiceClient MobileService =
             new MobileServiceClient(
-                "https://fieldengineerlite-code.azurewebsites.net",
-                "https://fieldengineerlite-rg3de4f453d3934e29b477bd2b4ff43a83.azurewebsites.net",
-                "cPeHjNEDGgXLTnMWvJogCMUfyaQVlZ83"
-            );
-
+                "https://fetechnician-code.azurewebsites.net/",
+                "https://fieldengineeref90e9309d7f4a608a99748e0eea69de.azurewebsites.net",
+                "OtFsjAFDBBMENsPCBQFJmItwjvAfaX77");
+        
+        public AppServiceClient AppService = 
+            new AppServiceClient("https://fieldengineeref90e9309d7f4a608a99748e0eea69de.azurewebsites.net");
         // 2. add sync table
         private IMobileServiceSyncTable<Job> jobTable;
           
@@ -75,19 +79,35 @@ namespace FieldEngineerLite
         {
             // 7. add auth
 
-
-            // 6. add sync
+            await EnsureLogin();
+            //5. add sync
             try
             {
                 await this.MobileService.SyncContext.PushAsync();
 
                 var query = jobTable.CreateQuery()
-                                .Where(job => job.AgentId == "2");
+                    .Where(job => job.AgentId == "2");
 
                 await jobTable.PullAsync(null, query);
             }
-            
-            catch (Exception) {  }
+            catch (Exception)
+            { 
+            }
+        }
+        
+        public async Task EnsureLogin()
+        {
+            LoginInProgress = true;
+            while (this.AppService.CurrentUser == null) {
+                //await this.AppService.LoginAsync(
+                await this.MobileService.LoginAsync (App.UIContext, 
+                    MobileServiceAuthenticationProvider.WindowsAzureActiveDirectory);
+                this.AppService.SetCurrentUser(this.MobileService.CurrentUser.UserId, this.MobileService.CurrentUser.MobileServiceAuthenticationToken);
+
+            }
+
+            LoginInProgress = false;
+
         }
 
         public async Task CompleteJobAsync(Job job)

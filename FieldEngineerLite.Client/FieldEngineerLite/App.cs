@@ -7,23 +7,29 @@ using FieldEngineerLite.Views;
 using FieldEngineerLite;
 
 #if __IOS__
-using UIContext = MonoTouch.UIKit.UIViewController;
+using UIContext = UIKit.UIViewController;
 #elif __ANDROID__
 using UIContext = global::Android.Content.Context;
 #endif
 
 namespace FieldEngineerLite
 {
-    public class App
+    public class App : Application
     {
         public static UIContext UIContext { get; set; }
         public static JobService JobService = new JobService();
 
-
-        public static Page GetMainPage()
+        public App()
         {
-            return new NavigationPage (new JobMasterDetailPage ());
+            MainPage = new JobMasterDetailPage ();
         }
+
+
+
+        /*public static Page GetMainPage()
+        {
+            return 
+        }*/
     }
 
     public static class AppStyle

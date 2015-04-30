@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
@@ -14,7 +14,8 @@ namespace FieldEngineerLite
             var number = new Label();
             number.TextColor = Color.White;
             number.WidthRequest = 60;
-            number.Font = AppStyle.DefaultFont.WithSize(NamedSize.Medium).WithAttributes(FontAttributes.Bold);
+            number.FontSize = Device.GetNamedSize (NamedSize.Medium, typeof(Label));
+            number.FontAttributes = FontAttributes.Bold;
             number.SetBinding<Job>(Label.TextProperty, job => job.JobNumber);
 
             var eta = new Label();
@@ -22,7 +23,7 @@ namespace FieldEngineerLite
             eta.HorizontalOptions = LayoutOptions.FillAndExpand;
             eta.YAlign = TextAlignment.Center;
             eta.TextColor = Color.White;
-            eta.Font = AppStyle.DefaultFont;
+            //eta.Font = AppStyle.DefaultFont;
             eta.SetBinding<Job>(Label.TextProperty, job => job.StartTime);
 
             var name = new Label();
@@ -30,7 +31,7 @@ namespace FieldEngineerLite
             name.HorizontalOptions = LayoutOptions.FillAndExpand;
             name.YAlign = TextAlignment.Center;
             name.TextColor = Color.White;
-            name.Font = AppStyle.DefaultFont;
+            //name.Font = AppStyle.DefaultFont;
             name.SetBinding<Job>(Label.TextProperty, job => job.CustomerName);
 
             var rootLayout = new StackLayout
