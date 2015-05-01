@@ -30,11 +30,8 @@ namespace FieldEngineerLite
         #endregion
         
         // 1. add client initializer
-        public MobileServiceClient MobileService =
-            new MobileServiceClient(
-                "https://fetechnician-code.azurewebsites.net/",
-                "https://fieldengineeref90e9309d7f4a608a99748e0eea69de.azurewebsites.net",
-                "OtFsjAFDBBMENsPCBQFJmItwjvAfaX77");
+        public IMobileServiceClient MobileService = null;
+            
         
         public AppServiceClient AppService = 
             new AppServiceClient("https://fieldengineeref90e9309d7f4a608a99748e0eea69de.azurewebsites.net");
@@ -44,9 +41,12 @@ namespace FieldEngineerLite
         
         public async Task InitializeAsync()
         {
+            this.MobileService = AppService.CreateMobileServiceClient(
+                "https://fetechnician-code.azurewebsites.net/",
+                "OtFsjAFDBBMENsPCBQFJmItwjvAfaX77");
             // 3. initialize local store
 
-            var store = new MobileServiceSQLiteStore("local-db-fabrikamA");
+            var store = new MobileServiceSQLiteStore("local-db-fabrikam70");
             store.DefineTable<Job>();
 
             await MobileService.SyncContext.InitializeAsync(store);
@@ -100,9 +100,9 @@ namespace FieldEngineerLite
             LoginInProgress = true;
             while (this.AppService.CurrentUser == null) {
                 //await this.AppService.LoginAsync(
-                await this.MobileService.LoginAsync (App.UIContext, 
-                    MobileServiceAuthenticationProvider.WindowsAzureActiveDirectory);
-                this.AppService.SetCurrentUser(this.MobileService.CurrentUser.UserId, this.MobileService.CurrentUser.MobileServiceAuthenticationToken);
+                await this.AppService.LoginAsync (App.UIContext, 
+                    MobileServiceAuthenticationProvider.WindowsAzureActiveDirectory.ToString());
+                //this.AppService.SetCurrentUser(this.MobileService.CurrentUser.UserId, this.MobileService.CurrentUser.MobileServiceAuthenticationToken);
 
             }
 

@@ -36,7 +36,9 @@ namespace FieldEngineerLite
                 }
             };
 
-            Master = listPage;
+            var listNavigationPage = new MyNavigationPage(listPage);
+            listNavigationPage.Title = "Appointments";
+            Master = listNavigationPage;
             JobDetailsPage details = new JobDetailsPage();
 
             details.Content.IsVisible = false;
